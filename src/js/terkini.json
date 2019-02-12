@@ -1,0 +1,26 @@
+[
+  {
+    "date": "Senin, 16 Agustus 2018",
+    "verificator": ["TEMPO", "Detik", "Tirto"],
+    "title": "Tol Ngawi-Sragen Per Tanggal 15 November 2018 Gratis Sampai Peresmian",
+    "description": "Informasi digratiskannya tol Ngawi-Sragen digratiskan dari tanggal 15 November 2018 hingga peresmiannya nanti merupakan informasi yang tidak tepat.",
+    "status": "salah",
+    "urlCategory": "category.html",
+    "urlAuthor": "profile.html",
+    "urlArticle": "detail-article.html",
+    "image": "images/artikel-1.jpg",
+    "imageCaption": "lorem ipsum dolor sit amet"
+  },
+  {
+    "date": "Senin, 16 Februari 2019",
+    "verificator": ["Kompas.com", "KBR", "VIVAnews"],
+    "title": "Tol Ngawi-Sragen Per Tanggal 15 November 2018 Gratis Sampai Peresmian",
+    "description": "Informasi digratiskannya tol Ngawi-Sragen digratiskan dari tanggal 15 November 2018 hingga peresmiannya nanti merupakan informasi yang tidak tepat.",
+    "status": "salah",
+    "urlCategory": "category.html",
+    "urlAuthor": "profile.html",
+    "urlArticle": "detail-article.html",
+    "image": "images/artikel-1.jpg",
+    "imageCaption": "lorem ipsum dolor sit amet"
+  }
+]

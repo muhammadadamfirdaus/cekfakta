@@ -1,0 +1,280 @@
+// variables
+$desktopHD: 'screen and (min-width: 1440px)';
+$desktop: 'screen and (min-width: 801px) and (max-width: 1280px)';
+$desktopGeneral: 'screen and (min-width: 800px)';
+$mobileGeneral: 'screen and (max-width: 800px)';
+$mobile7inch: 'screen and (min-width: 600px) and (max-width: 800px)';
+$mobile6inch: 'screen and (min-width: 376px) and (max-width: 599px)';
+$mobile5inch: 'screen and (max-width: 375px)';
+
+
+// begin menu
+nav {
+  box-sizing: border-box;
+  list-style: none;
+}
+
+$menuSize: '6px'; // menu size
+$menuPositionX: '20px'; // position horizontal
+$menuPositionY: '10px'; // position vertical
+$menuFont: 'Arial', Sans-Serif; // font menu
+$menuBurgerColor: #979797; // hamburger color
+$menuFontColor: #fff; // color font menu, no need quote
+$menuBackground: rgba(0,0,0,0.75); // background menu
+$submenuPositionY: '80px';
+.menu-mobile {
+  @media #{$desktopGeneral} {
+    display: none;
+  }
+
+  @media #{$mobileGeneral} {
+    display:block;
+    text-align: center;
+    width: calc(#{$menuSize} * 4);
+    height: calc(#{$menuSize} * 2.6);
+    right: #{$menuPositionX}; /* change placement menu button on left or right */
+    top: #{$menuPositionY};
+    position: absolute;
+    z-index: 9999;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    background: $menuBurgerColor;
+		position: absolute;
+		margin: auto;
+		width: 100%;
+    height: 1px;
+    transition: all 1s ease;
+  }
+
+  &:before {
+		transform: translate(0, 0);
+  }
+
+  &:after {
+		transform: translate(0, calc(#{$menuSize} * 2.2));
+  }
+
+  & > * {
+    height: 1px;
+    background: $menuBurgerColor;
+    width: 100%;
+    display: block;
+    transform: translate3d(0, calc(#{$menuSize} * 1.2),0);
+    transition: width 0.5s ease-out;
+  }
+
+  &.close {
+    &:before,
+    &:after {
+      transition: all 0.5s ease-in;
+      background: colorContrast($menuBackground);
+    }
+
+    &:before {
+      transform: rotate(45deg) translate(calc(#{$menuSize} - 2px), #{$menuSize});
+      transform-origin: 50%;
+    }
+
+    &:after {
+      transform: rotate(-45deg) translate(-#{$menuSize}, calc(#{$menuSize} - 2px));
+      transform-origin: 50%;
+    }
+
+    & > * {
+      width: 0;
+      transition: width 0.5s ease-out;
+    }
+  }
+}
+
+.menu {
+  @media #{$desktopGeneral} {
+    position: relative;
+    text-align: right;
+    width: 100%;
+    z-index: 2;
+  }
+  @media #{$mobileGeneral} {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+    visibility: hidden;
+    z-index: 9998;
+    transition: all 0.8s ease-out;
+    & > * {
+      opacity: 0;
+      height: 100vh;
+      background: $menuBackground;
+      // visibility: hidden;
+      transform: translate3d(768px,0,0);
+      transition: all 0.8s ease-out;
+    }
+    &.active {
+      visibility: visible;
+      width: auto;
+      transition: all 0.3s ease-out;
+      & * {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
+  & > * {
+    @media #{$desktopGeneral}{
+      display: flex;
+      justify-content: flex-end;
+      height: 100%;
+    }
+    & > * {
+      font-family: $menuFont;
+      @media #{$desktopGeneral} {
+        display: flex;
+        align-items: center;
+      }
+      @media #{$mobileGeneral} {
+        font-size: 100%;
+        margin: calc(#{$menuSize} * 4) 0;
+        &:first-child {
+          margin-top: 0; // reset space for first child
+          padding-top: calc(#{$menuSize} * 8); // give extra padding to top for first child
+        }
+      }
+    }
+  }
+
+  .sub {
+    position: relative;
+    & > a:before,
+    & > a:after {
+      content: '';
+    }
+
+    & > a:before {
+      position: absolute;
+      left: 50%;
+      top: 25px;
+      text-align: center;
+      margin: 0 auto;
+      transform: translate3d(-50%, -50%, 0);
+      opacity: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 15px 15px 15px;
+      border-color: transparent transparent #ffffff transparent;
+      line-height: 0px;
+      _border-color: #000000 #000000 #ffffff #000000;
+      _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+      @media #{$mobileGeneral}{
+        display: none;
+      }
+    }
+
+    & > a:after {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+      width: 8px;
+      height: 20px;
+      background-size: 8px 10px;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      right: 4px;
+      top: 0;
+      transform: rotate(90deg);
+      transform-origin: center;
+      transition: transform 0.2s ease;
+    }
+
+    & > ul {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      list-style-type: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 160px;
+      background: $menuFontColor;
+      padding: 0; // reset any padding affected that causes extra scroll horizontally
+      @media #{$desktopGeneral}{
+        transform: translate3d(0, #{$submenuPositionY}, 0);
+      }
+      @media #{$mobileGeneral}{
+        background: none;
+        height: 100%;
+        padding: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(32px, -10px, 0);
+        transform: all 0.3s ease;
+      }
+      & li {
+        margin: 0.5em 0;
+        padding-top: calc(#{$menuSize} * 4);
+        padding-bottom: calc(#{$menuSize} * 4);
+        text-align: left;
+        @media #{$mobileGeneral}{
+          margin: calc(6px * 4) 0 0;
+        }
+        & a {
+          color: $menuBackground;
+          @media #{$mobileGeneral}{
+            color: $menuFontColor;
+          }
+        }
+      }
+    }
+
+    &.active > a:before,
+    &.active > ul {
+      opacity: 1;
+      transition: all 0.3s ease;
+    }
+
+    &.active > a:after {
+      transform: rotate(-90deg);
+      transform-origin: center;
+      transition: transform 0.2s ease;
+    }
+
+    &.active > ul {
+      @media #{$mobileGeneral}{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(32px, 0, 0);
+        transform: all 0.3s ease;
+      }
+    }
+  }
+
+  // space for items
+  & > * > *,
+  .sub > *:not(a) > * {
+    padding: 0 calc(#{$menuSize} * 4);
+  }
+
+  & a {
+    @media #{$desktopGeneral}{
+      color: #000;
+    }
+    @media #{$mobileGeneral}{
+      color: $menuFontColor;
+    }
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+  }
+}
+// end menu
